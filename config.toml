@@ -1,0 +1,226 @@
+# ========================================
+# CROSSHAIR OVERLAY PRO - CONFIGURATION
+# ========================================
+# Appuyez sur F5 dans l'application pour recharger
+
+[crosshair]
+# Taille du crosshair (en pixels)
+size = 10
+
+# Épaisseur des lignes (en pixels)
+thickness = 0
+
+# Espace au centre pour le style "classic" (en pixels)
+gap = 5
+
+# Couleur du crosshair (format hex)
+color = "#00FF00"  # Vert
+
+# Transparence du crosshair (0.0 = invisible, 1.0 = opaque)
+alpha = 1.0
+
+# Rotation en degrés (0-360)
+rotation = 45
+
+# Style du crosshair: "classic", "dot", "cross", "circle", "t", "plus", "x"
+style = "classic"
+
+[crosshair.center_dot]
+# Activer/désactiver le point central
+enabled = true
+
+# Taille du point central (en pixels)
+size = 2
+
+# Couleur du point central (format hex)
+color = "#FF0000"  # Rouge
+
+# Transparence du point central (0.0-1.0)
+alpha = 1.0
+
+[crosshair.outline]
+# Activer l'outline (contour noir)
+enabled = false
+
+# Épaisseur de l'outline (en pixels)
+thickness = 1
+
+# Couleur de l'outline (format hex)
+color = "#000000"  # Noir
+
+# Transparence de l'outline (0.0-1.0)
+alpha = 0.8
+
+[window]
+# Taille de la fenêtre (en pixels)
+size = 100
+
+# Opacité globale de la fenêtre (0.0-1.0)
+opacity = 1.0
+
+[window.position]
+# Centrer automatiquement la fenêtre sur l'écran
+center_screen = true
+
+# Position manuelle (ignorée si center_screen = true)
+x = 100
+y = 100
+
+# Suivre le curseur de la souris
+follow_cursor = false
+
+# Décalage par rapport au curseur (en pixels)
+offset_x = 0
+offset_y = 0
+
+[window.background]
+# Activer un fond coloré pour la fenêtre
+enabled = false
+
+# Couleur de fond (format hex)
+color = "#000000"  # Noir
+
+# Transparence du fond (0.0-1.0)
+alpha = 0.1
+
+[effects]
+# ========================================
+# EFFETS VISUELS
+# ========================================
+
+
+[effects.pulse]
+# Effet de pulsation/clignotement
+enabled = false
+
+# Vitesse du pulse (en Hz, cycles par seconde)
+speed = 2.0
+
+# Transparence minimum (0.0-1.0)
+min_alpha = 0.3
+
+# Transparence maximum (0.0-1.0)
+max_alpha = 1.0
+
+[effects.shake]
+# Effet de tremblement
+enabled = true
+
+# Intensité du tremblement (en pixels)
+intensity = 1.0
+
+# Vitesse du tremblement (en Hz)
+speed = 1.0
+
+[effects.rainbow]
+# Effet arc-en-ciel
+enabled = true
+
+# Vitesse de rotation des couleurs (en Hz)
+speed = 1.0
+
+# Saturation des couleurs (0.0-1.0)
+saturation = 1.0
+
+# Luminosité des couleurs (0.0-1.0)
+brightness = 1.0
+
+[audio]
+# ========================================
+# AUDIO - SONS DE CLICS DE SOURIS
+# ========================================
+
+# Activer/désactiver l'audio global
+enabled = false
+
+# Volume global (0.0-1.0)
+volume = 0.5
+
+[audio.left_click]
+# Son pour le clic gauche
+enabled = true
+
+# Fichier audio à jouer
+sound_file = "sounds/test.ogg"
+
+# Volume spécifique (0.0-1.0)
+volume = 1.0
+
+# Hauteur du son (0.5-2.0, 1.0 = normal)
+pitch = 1.0
+
+[audio.right_click]
+# Son pour le clic droit
+enabled = true
+
+# Fichier audio à jouer
+sound_file = "sounds/click_right.wav"
+
+# Volume spécifique (0.0-1.0)
+volume = 0.8
+
+# Hauteur du son (0.5-2.0, 1.0 = normal)
+pitch = 1.2
+
+[audio.middle_click]
+# Son pour le clic molette
+enabled = false
+
+# Fichier audio à jouer
+sound_file = "sounds/click_middle.wav"
+
+# Volume spécifique (0.0-1.0)
+volume = 0.6
+
+# Hauteur du son (0.5-2.0, 1.0 = normal)
+pitch = 0.8
+
+# ========================================
+# PRESETS RECOMMANDÉS
+# ========================================
+
+# GAMING DISCRET:
+# style = "classic", size = 15, thickness = 1, gap = 3
+# alpha = 0.8, outline.enabled = true
+
+# EFFET NÉON:
+# style = "cross", color = "#00FFFF", rainbow.enabled = true
+# rainbow.speed = 0.5
+
+# RAINBOW PULSE:
+# style = "circle", rainbow.enabled = true, pulse.enabled = true
+# rainbow.speed = 0.5, pulse.speed = 1.5
+
+# SNIPER DOT:
+# style = "dot", size = 3, color = "#FF0000"
+# center_dot.enabled = false
+
+# ROTATING CROSS:
+# style = "plus", rotation = 45.0, thickness = 3
+# outline.enabled = true
+
+# SHAKE EFFECT:
+# style = "x", shake.enabled = true, shake.intensity = 2.0
+# shake.speed = 15.0
+
+# ============================================
+# EXEMPLES DE CONFIGURATIONS
+# ============================================
+
+# Crosshair classique vert avec point rouge:
+# style = "classic", color = "#00FF00", center_dot.color = "#FF0000"
+
+# Point simple rouge:
+# style = "dot", center_dot.enabled = true, center_dot.color = "#FF0000"
+
+# Croix complète bleue:
+# style = "cross", color = "#0066FF", gap = 0
+
+# Cercle cyan:
+# style = "circle", color = "#00FFFF", size = 30
+
+# Crosshair gaming (petit et précis):
+# size = 15, thickness = 1, gap = 3, style = "classic"
+
+# Crosshair large et visible:
+# size = 40, thickness = 3, gap = 8, style = "cross" 

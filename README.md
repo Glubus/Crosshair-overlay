@@ -1,4 +1,4 @@
-# 🎯 Crosshair Overlay Pro
+# 🎯 Crosshair Overlay
 
 A customizable and transparent crosshair overlay for games, developed in Rust with advanced visual effects and real-time configuration.
 

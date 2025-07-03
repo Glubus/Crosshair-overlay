@@ -251,11 +251,11 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - 🐛 **Bugs** : Open an [issue](../../issues)
 - 💡 **Suggestions** : Open a [discussion](../../discussions)
-- 📧 **Contact** : [Your email]
+- 📧 **Contact** : OsefCode@gmail.com
 
 ## 🏆 Credits
 
-Developed with ❤️ in Rust by [Your name]
+Developed with ❤️ in Rust by Glubus
 
 ---
 

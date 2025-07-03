@@ -11,10 +11,10 @@ use winit::{
 use softbuffer::{Context, Surface};
 
 mod config;
-mod mouse_capture;
+mod crosshair;
 
 use config::CrosshairConfig;
-use mouse_capture::MouseCapture;
+use config::effects::mouse::{get_global_mouse_state, initialize_global_mouse_capture, shutdown_global_mouse_capture, has_mouse_state_changed};
 
 struct App {
     window: Option<std::sync::Arc<Window>>,
@@ -22,7 +22,6 @@ struct App {
     context: Option<Context<std::sync::Arc<Window>>>,
     config: CrosshairConfig,
     start_time: Instant,
-    mouse_capture: Option<MouseCapture>,
     last_frame_time: Instant,
     frame_rate_limit: std::time::Duration,
     needs_redraw: bool,
@@ -77,11 +76,8 @@ impl ApplicationHandler for App {
         self.surface = Some(surface);
 
         // Démarrer la capture de souris
-        let mut mouse_capture = MouseCapture::new();
-        if let Err(e) = mouse_capture.start() {
+        if let Err(e) = initialize_global_mouse_capture() {
             eprintln!("❌ Erreur lors du démarrage de la capture de souris: {}", e);
-        } else {
-            self.mouse_capture = Some(mouse_capture);
         }
 
         // Premier rendu
@@ -127,8 +123,10 @@ impl ApplicationHandler for App {
     }
 
     fn about_to_wait(&mut self, event_loop: &ActiveEventLoop) {
-        // Si des effets animés sont activés, programmer le prochain réveil
-        if self.has_animated_effects() {
+        let has_animations = self.has_animated_effects();
+        
+        if has_animations {
+            // Effets animés continus (pulse, shake, rainbow) - 30 FPS
             let next_frame = self.last_frame_time + self.frame_rate_limit;
             event_loop.set_control_flow(ControlFlow::WaitUntil(next_frame));
             
@@ -141,8 +139,17 @@ impl ApplicationHandler for App {
                 self.last_frame_time = now;
             }
         } else {
-            // Pas d'animation, attendre indéfiniment jusqu'au prochain événement
+            // Pas d'animation continue - attendre indéfiniment jusqu'au prochain événement
+            // Les effets de souris seront gérés par des redraws déclenchés lors des clics
             event_loop.set_control_flow(ControlFlow::Wait);
+            
+            // Vérifier s'il y a eu un changement de souris et redessiner si nécessaire
+            if self.config.effects.has_mouse_effects() && has_mouse_state_changed() {
+                self.needs_redraw = true;
+                if let Some(window) = &self.window {
+                    window.request_redraw();
+                }
+            }
         }
     }
 }
@@ -160,7 +167,6 @@ impl App {
             context: None,
             config,
             start_time: Instant::now(),
-            mouse_capture: None,
             last_frame_time: Instant::now(),
             frame_rate_limit,
             needs_redraw: true, // Initialiser à true pour le premier dessin
@@ -242,6 +248,11 @@ fn main() {
 
     let mut app = App::new();
     
+    // Arrêter la capture de souris quand l'application se termine
+    std::panic::set_hook(Box::new(|_| {
+        shutdown_global_mouse_capture();
+    }));
+    
     println!("🎯 Crosshair Overlay Pro - Version Performance Maximale !");
     println!("📋 Fonctionnalités :");
     println!("   ✅ Configuration modulaire via config.toml");
@@ -268,6 +279,7 @@ fn main() {
         app.config.effects.rainbow.enabled,
         app.config.effects.rainbow.saturation,
         app.config.effects.rainbow.brightness);
+    println!("   • Effets Souris: {:?}", app.config.effects.mouse.enabled);
     println!();
     println!("⌨️  Contrôles :");
     println!("   • Échap : Quitter");

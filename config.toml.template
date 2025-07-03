@@ -1,0 +1,252 @@
+# ========================================
+# CROSSHAIR OVERLAY PRO - CONFIGURATION TEMPLATE
+# ========================================
+# Press F5 in the application to reload configuration
+# Copy this file to config.toml and modify as needed
+
+[crosshair]
+# Crosshair size in pixels
+size = 25
+
+# Line thickness in pixels
+thickness = 2
+
+# Center gap for "classic" style in pixels
+gap = 5
+
+# Crosshair color in hex format
+color = "#00FF00"  # Green
+
+# Crosshair transparency (0.0 = invisible, 1.0 = opaque)
+alpha = 1.0
+
+# Rotation in degrees (0-360)
+rotation = 0
+
+# Crosshair style: "classic", "dot", "circle", "t", "x", "square", "diamond"
+style = "classic"
+
+# For "classic" style: use triangles instead of rectangles
+triangle_bars = false
+
+# For "circle" style: filled circle or outline only
+filled_circle = false
+
+[crosshair.center_dot]
+# Enable/disable center dot
+enabled = true
+
+# Center dot size in pixels
+size = 2
+
+# Center dot color in hex format
+color = "#FF0000"  # Red
+
+# Center dot transparency (0.0-1.0)
+alpha = 1.0
+
+[crosshair.outline]
+# Enable outline (black border)
+enabled = false
+
+# Outline thickness in pixels
+thickness = 1
+
+# Outline color in hex format
+color = "#000000"  # Black
+
+# Outline transparency (0.0-1.0)
+alpha = 0.8
+
+[window]
+# Window size in pixels
+size = 300
+
+# Global window opacity (0.0-1.0)
+opacity = 1.0
+
+[window.position]
+# Automatically center window on screen
+center_screen = true
+
+# Manual position (ignored if center_screen = true)
+x = 100
+y = 100
+
+# Follow mouse cursor
+follow_cursor = false
+
+# Offset from cursor in pixels
+offset_x = 0
+offset_y = 0
+
+[window.background]
+# Enable colored background for the window
+enabled = false
+
+# Background color in hex format
+color = "#000000"  # Black
+
+# Background transparency (0.0-1.0)
+alpha = 0.1
+
+# ========================================
+# VISUAL EFFECTS
+# ========================================
+
+[effects.pulse]
+# Pulsing/blinking effect
+enabled = false
+
+# Pulse speed in Hz (cycles per second)
+speed = 2.0
+
+# Minimum transparency (0.0-1.0)
+min_alpha = 0.3
+
+# Maximum transparency (0.0-1.0)
+max_alpha = 1.0
+
+[effects.shake]
+# Trembling effect
+enabled = false
+
+# Shake intensity in pixels
+intensity = 1.0
+
+# Shake speed in Hz
+speed = 1.0
+
+[effects.rainbow]
+# Rainbow color effect
+enabled = false
+
+# Color rotation speed in Hz
+speed = 1.0
+
+# Color saturation (0.0-1.0)
+saturation = 1.0
+
+# Color brightness (0.0-1.0)
+brightness = 1.0
+
+# ========================================
+# MOUSE EFFECTS
+# ========================================
+
+[effects.mouse]
+# Enable/disable mouse effects
+enabled = true
+
+# Gap Effect - Expands or contracts crosshair on click
+[effects.mouse.gap_effect]
+enabled = true
+mode = "expand"        # "expand", "contract", "toggle"
+intensity = 2.0        # Effect multiplier (0.0-5.0)
+smooth_transition = true
+
+# Button configuration for gap effect
+[effects.mouse.gap_effect.button_binding]
+left_click = "expand"    # Left click expands crosshair
+right_click = "contract" # Right click contracts crosshair
+# middle_click = null    # Mouse wheel no effect (optional)
+
+# Visibility Effect - Hides parts of the crosshair on click
+[effects.mouse.visibility_effect]
+enabled = false
+hide_mode = "center"      # "full", "left", "right", "top", "bottom", "center", "sides", "vertical", "cross"
+fade_percentage = 0.2     # Fade percentage (0.0-1.0)
+smooth_fade = true
+fade_speed = 5.0          # Fade speed (0.1-10.0, higher = faster)
+
+# Button configuration for visibility effect
+[effects.mouse.visibility_effect.button_binding]
+left_click = "center"    # Left click hides center
+right_click = "sides"    # Right click hides sides
+middle_click = "full"    # Mouse wheel hides everything
+
+# ========================================
+# RECOMMENDED PRESETS
+# ========================================
+
+# DISCRETE GAMING:
+# style = "classic", size = 15, thickness = 1, gap = 3
+# alpha = 0.8, outline.enabled = true
+
+# TRIANGLE STYLE:
+# style = "classic", triangle_bars = true, thickness = 8
+# gap = 3, outline.enabled = true
+
+# FILLED CIRCLE:
+# style = "circle", filled_circle = true, size = 20
+# gap = 5, color = "#FF00FF"
+
+# NEON EFFECT:
+# style = "circle", color = "#00FFFF", rainbow.enabled = true
+# rainbow.speed = 0.5
+
+# RAINBOW PULSE:
+# style = "circle", rainbow.enabled = true, pulse.enabled = true
+# rainbow.speed = 0.5, pulse.speed = 1.5
+
+# SNIPER DOT:
+# style = "dot", size = 3, color = "#FF0000"
+# center_dot.enabled = false
+
+# ROTATING SQUARE:
+# style = "square", rotation = 45.0, thickness = 3
+# outline.enabled = true
+
+# ELEGANT DIAMOND:
+# style = "diamond", color = "#FF00FF", gap = 8
+# outline.enabled = true
+
+# SHAKE EFFECT:
+# style = "x", shake.enabled = true, shake.intensity = 2.0
+# shake.speed = 15.0
+
+# MOUSE EFFECTS - SNIPER MODE:
+# effects.mouse.gap_effect.enabled = true, mode = "expand"
+# effects.mouse.gap_effect.intensity = 3.0, smooth_transition = false
+
+# MOUSE EFFECTS - PRECISION MODE:
+# effects.mouse.gap_effect.enabled = true, mode = "contract"
+# effects.mouse.gap_effect.intensity = 1.5
+
+# MOUSE EFFECTS - CLARITY MODE:
+# effects.mouse.visibility_effect.enabled = true, hide_mode = "center"
+# effects.mouse.visibility_effect.fade_percentage = 1.0, fade_speed = 8.0
+
+# ============================================
+# CONFIGURATION EXAMPLES
+# ============================================
+
+# Classic green crosshair with red dot:
+# style = "classic", color = "#00FF00", center_dot.color = "#FF0000"
+
+# Simple red dot:
+# style = "dot", center_dot.enabled = true, center_dot.color = "#FF0000"
+
+# Full blue cross:
+# style = "classic", color = "#0066FF", gap = 0
+
+# Cyan circle:
+# style = "circle", color = "#00FFFF", size = 30
+
+# Gaming crosshair (small and precise):
+# size = 15, thickness = 1, gap = 3, style = "classic"
+
+# Large and visible crosshair:
+# size = 40, thickness = 3, gap = 8, style = "classic"
+
+# Transparent gaming crosshair:
+# size = 20, thickness = 2, gap = 4, alpha = 0.7, outline.enabled = true
+
+# Minimalist dot:
+# style = "dot", size = 1, center_dot.enabled = false
+
+# Rainbow circle:
+# style = "circle", size = 25, rainbow.enabled = true, rainbow.speed = 2.0
+
+# Pulsing X-shape:
+# style = "x", pulse.enabled = true, pulse.speed = 3.0, min_alpha = 0.5 

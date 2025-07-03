@@ -2,11 +2,10 @@ use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::Path;
 
-pub mod crosshair;
 pub mod effects;
 pub mod window;
 
-pub use crosshair::Crosshair;
+use crate::crosshair::Crosshair;
 pub use effects::Effects;
 pub use window::WindowConfig;
 

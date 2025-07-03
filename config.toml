@@ -5,10 +5,10 @@
 
 [crosshair]
 # Taille du crosshair (en pixels)
-size = 10
+size = 25
 
 # Épaisseur des lignes (en pixels)
-thickness = 0
+thickness = 10
 
 # Espace au centre pour le style "classic" (en pixels)
 gap = 5
@@ -20,10 +20,16 @@ color = "#00FF00"  # Vert
 alpha = 1.0
 
 # Rotation en degrés (0-360)
-rotation = 45
+rotation = 0
 
-# Style du crosshair: "classic", "dot", "cross", "circle", "t", "plus", "x"
+# Style du crosshair: "classic", "dot", "circle", "t", "x", "square", "diamond"
 style = "classic"
+
+# Pour style "classic" : utiliser des triangles au lieu de rectangles
+triangle_bars = true
+
+# Pour style "circle" : cercle plein ou juste le contour
+filled_circle = false
 
 [crosshair.center_dot]
 # Activer/désactiver le point central
@@ -53,7 +59,7 @@ alpha = 0.8
 
 [window]
 # Taille de la fenêtre (en pixels)
-size = 100
+size = 300
 
 # Opacité globale de la fenêtre (0.0-1.0)
 opacity = 1.0
@@ -67,7 +73,7 @@ x = 100
 y = 100
 
 # Suivre le curseur de la souris
-follow_cursor = false
+follow_cursor = true
 
 # Décalage par rapport au curseur (en pixels)
 offset_x = 0
@@ -104,7 +110,7 @@ max_alpha = 1.0
 
 [effects.shake]
 # Effet de tremblement
-enabled = true
+enabled = false
 
 # Intensité du tremblement (en pixels)
 intensity = 1.0
@@ -125,55 +131,40 @@ saturation = 1.0
 # Luminosité des couleurs (0.0-1.0)
 brightness = 1.0
 
-[audio]
 # ========================================
-# AUDIO - SONS DE CLICS DE SOURIS
+# EFFETS DE SOURIS - NOUVEAUTÉ !
 # ========================================
 
-# Activer/désactiver l'audio global
-enabled = false
-
-# Volume global (0.0-1.0)
-volume = 0.5
-
-[audio.left_click]
-# Son pour le clic gauche
+[effects.mouse]
+# Activer/désactiver les effets de souris
 enabled = true
 
-# Fichier audio à jouer
-sound_file = "sounds/test.ogg"
-
-# Volume spécifique (0.0-1.0)
-volume = 1.0
-
-# Hauteur du son (0.5-2.0, 1.0 = normal)
-pitch = 1.0
-
-[audio.right_click]
-# Son pour le clic droit
+# Effet de Gap - Écarte ou rapproche le crosshair au clic
+[effects.mouse.gap_effect]
 enabled = true
+mode = "expand"        # "expand", "contract", "toggle"
+intensity = 5        # Multiplicateur de l'effet (0.0-5.0)
+smooth_transition = true
 
-# Fichier audio à jouer
-sound_file = "sounds/click_right.wav"
+# Configuration par bouton pour l'effet de gap
+[effects.mouse.gap_effect.button_binding]
+left_click = "expand"    # Clic gauche écarte le crosshair
+right_click = "contract" # Clic droit rapproche le crosshair
+# middle_click = null    # Molette pas d'effet (optionnel)
 
-# Volume spécifique (0.0-1.0)
-volume = 0.8
-
-# Hauteur du son (0.5-2.0, 1.0 = normal)
-pitch = 1.2
-
-[audio.middle_click]
-# Son pour le clic molette
+# Effet de Visibilité - Cache des parties du crosshair au clic
+[effects.mouse.visibility_effect]
 enabled = false
+hide_mode = "center"      # "full", "left", "right", "top", "bottom", "center", "sides", "vertical", "cross"
+fade_percentage = 0.2     # Pourcentage de disparition (0.0-1.0)
+smooth_fade = true
+fade_speed = 5.0          # Vitesse de disparition (0.1-10.0, plus élevé = plus rapide)
 
-# Fichier audio à jouer
-sound_file = "sounds/click_middle.wav"
-
-# Volume spécifique (0.0-1.0)
-volume = 0.6
-
-# Hauteur du son (0.5-2.0, 1.0 = normal)
-pitch = 0.8
+# Configuration par bouton pour l'effet de visibilité
+[effects.mouse.visibility_effect.button_binding]
+left_click = "top"    # Clic gauche cache le centre
+right_click = "sides"    # Clic droit cache les côtés
+middle_click = "full"    # Molette cache tout
 
 # ========================================
 # PRESETS RECOMMANDÉS
@@ -183,8 +174,16 @@ pitch = 0.8
 # style = "classic", size = 15, thickness = 1, gap = 3
 # alpha = 0.8, outline.enabled = true
 
+# TRIANGLES STYLE:
+# style = "classic", triangle_bars = true, thickness = 8
+# gap = 3, outline.enabled = true
+
+# CERCLE PLEIN:
+# style = "circle", filled_circle = true, size = 20
+# gap = 5, color = "#FF00FF"
+
 # EFFET NÉON:
-# style = "cross", color = "#00FFFF", rainbow.enabled = true
+# style = "circle", color = "#00FFFF", rainbow.enabled = true
 # rainbow.speed = 0.5
 
 # RAINBOW PULSE:
@@ -195,13 +194,35 @@ pitch = 0.8
 # style = "dot", size = 3, color = "#FF0000"
 # center_dot.enabled = false
 
-# ROTATING CROSS:
-# style = "plus", rotation = 45.0, thickness = 3
+# CARRÉ ROTATIF:
+# style = "square", rotation = 45.0, thickness = 3
+# outline.enabled = true
+
+# LOSANGE ELEGANTE:
+# style = "diamond", color = "#FF00FF", gap = 8
 # outline.enabled = true
 
 # SHAKE EFFECT:
 # style = "x", shake.enabled = true, shake.intensity = 2.0
 # shake.speed = 15.0
+
+# MOUSE EFFECTS - SNIPER MODE:
+# effects.mouse.gap_effect.enabled = true, mode = "expand"
+# effects.mouse.gap_effect.intensity = 3.0, smooth_transition = false
+
+# MOUSE EFFECTS - PRECISION MODE:
+# effects.mouse.gap_effect.enabled = true, mode = "contract"
+# effects.mouse.gap_effect.intensity = 1.5
+
+# MOUSE EFFECTS - CLARITY MODE:
+# effects.mouse.visibility_effect.enabled = true, hide_mode = "center"
+# effects.mouse.visibility_effect.fade_percentage = 1.0, fade_speed = 8.0
+
+# MOUSE EFFECTS - VITESSE LENTE:
+# effects.mouse.visibility_effect.fade_speed = 1.0 (très lent)
+
+# MOUSE EFFECTS - VITESSE RAPIDE:
+# effects.mouse.visibility_effect.fade_speed = 10.0 (instantané)
 
 # ============================================
 # EXEMPLES DE CONFIGURATIONS
